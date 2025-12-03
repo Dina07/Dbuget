@@ -6,14 +6,12 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
 } from 'recharts';
 import { useAppContext } from '../../context/AppContext';
-import { ExpenseCategory } from '../../types';
 import { exportToImage } from '../../utils/exporters';
 import '../../styles/base.css';
 

@@ -579,3 +579,291 @@ body {
 .btn-modal-danger {
   @apply bg-red-500 hover:bg-red-600;
 }
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ============================================ */
+
+/* Mobile: Small screens (default styles above) */
+@media (max-width: 768px) {
+  .header-container {
+    @apply flex-col items-start py-2 px-3;
+  }
+
+  .header-left {
+    @apply flex-1 w-full mb-3;
+  }
+
+  .header-title {
+    @apply text-2xl;
+  }
+
+  .header-subtitle {
+    @apply text-xs;
+  }
+
+  .header-right {
+    @apply w-full justify-between gap-2 ml-0;
+  }
+
+  .header-user-name {
+    @apply text-sm  sm:inline;
+  }
+
+  .btn-logout {
+    @apply py-1 px-2 text-sm;
+  }
+
+  .layout-main {
+    @apply px-3 py-4;
+  }
+
+  .dashboard-grid {
+    @apply grid-cols-1;
+  }
+
+  .summary-container {
+    @apply grid-cols-1;
+  }
+
+  .summary-card {
+    @apply p-4;
+  }
+
+  .summary-label {
+    @apply text-xs;
+  }
+
+  .summary-amount-income,
+  .summary-amount-expense,
+  .summary-amount-balance {
+    @apply text-2xl;
+  }
+
+  .dashboard-card {
+    @apply p-4;
+  }
+
+  .dashboard-card-title {
+    @apply text-lg;
+  }
+
+  .chart-header {
+    @apply flex-col items-start gap-2;
+  }
+
+  .export-buttons {
+    @apply w-full flex-wrap;
+  }
+
+  .btn-export {
+    @apply text-xs px-2 py-1;
+  }
+
+  .stats-summary {
+    @apply grid-cols-1 gap-2;
+  }
+
+  .stat-item {
+    @apply text-left;
+  }
+
+  .stat-label {
+    @apply text-xs;
+  }
+
+  .stat-value {
+    @apply text-xl;
+  }
+
+  .expense-list-container {
+    @apply p-3;
+  }
+
+  .expense-list-header {
+    @apply flex-col items-start gap-2;
+  }
+
+  .expense-list-title {
+    @apply text-lg;
+  }
+
+  .expense-list-controls {
+    @apply w-full flex-col;
+  }
+
+  .expense-table {
+    @apply mb-4 text-sm;
+  }
+
+  .expense-table-header {
+    @apply text-xs;
+  }
+
+  .expense-table-row {
+    @apply text-xs gap-2 p-2;
+  }
+
+  .expense-col-date,
+  .expense-col-category,
+  .expense-col-description,
+  .expense-col-amount,
+  .expense-col-action {
+    @apply text-xs;
+  }
+
+  .expense-badge {
+    @apply text-xs px-2 py-1;
+  }
+
+  .btn-delete {
+    @apply py-1 px-2 text-xs;
+  }
+
+  .form-group {
+    @apply mb-3;
+  }
+
+  .form-label {
+    @apply text-sm;
+  }
+
+  .form-input {
+    @apply py-2 px-3 text-sm;
+  }
+
+  .btn {
+    @apply py-2 text-base;
+  }
+
+  .modal-content {
+    @apply mx-2 max-w-sm;
+  }
+
+  .modal-header {
+    @apply px-4 py-3;
+  }
+
+  .modal-title {
+    @apply text-base;
+  }
+
+  .modal-body {
+    @apply px-4 py-3;
+  }
+
+  .modal-message {
+    @apply text-xs;
+  }
+
+  .modal-footer {
+    @apply px-4 py-3 gap-2;
+  }
+
+  .btn-modal-cancel,
+  .btn-modal-confirm {
+    @apply px-3 py-2 text-sm;
+  }
+
+  .charts-container {
+    @apply grid-cols-1;
+  }
+
+  .chart-card {
+    @apply p-3;
+  }
+
+  .expense-form-card {
+    @apply p-3;
+  }
+
+  .expense-form-title {
+    @apply text-lg;
+  }
+
+  .footer {
+    @apply py-4 mt-6;
+  }
+
+  .footer-text {
+    @apply text-xs;
+  }
+
+  .onboarding-container {
+    @apply max-w-xs p-6;
+  }
+
+  .onboarding-title {
+    @apply text-2xl;
+  }
+
+  .onboarding-subtitle {
+    @apply text-sm;
+  }
+
+  .onboarding-features {
+    @apply p-4;
+  }
+
+  .onboarding-feature-item {
+    @apply gap-2 text-xs;
+  }
+}
+
+/* Tablet: Medium screens */
+@media (max-width: 1024px) {
+  .header-container {
+    @apply px-4 py-3;
+  }
+
+  .header-title {
+    @apply text-2xl;
+  }
+
+  .dashboard-grid {
+    @apply grid-cols-1;
+  }
+
+  .summary-container {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+
+  .charts-container {
+    @apply grid-cols-1;
+  }
+
+  .expense-table {
+    @apply text-sm;
+  }
+
+  .expense-col-description {
+    @apply hidden md:block;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .header-container {
+    @apply flex-row;
+  }
+
+  .header-right {
+    @apply ml-auto;
+  }
+
+  .dashboard-grid {
+    @apply grid-cols-2;
+  }
+
+  .summary-container {
+    @apply grid-cols-3;
+  }
+
+  .charts-container {
+    @apply grid-cols-2;
+  }
+
+  .expense-table {
+    @apply text-base;
+  }
+}
