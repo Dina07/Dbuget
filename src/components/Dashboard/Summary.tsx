@@ -1,24 +1,48 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useAppContext } from '../../context/AppContext';
+import '../../styles/base.css';
 
 export const Summary: React.FC = () => {
+  const { user, expenses } = useAppContext();
+
+  // Calculate current month totals
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  const monthlyExpenses = useMemo(() => {
+    return expenses.filter(
+      (exp) =>
+        exp.date.getMonth() === currentMonth &&
+        exp.date.getFullYear() === currentYear
+    );
+  }, [expenses, currentMonth, currentYear]);
+
+  const totalExpensesThisMonth = useMemo(() => {
+    return monthlyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+  }, [monthlyExpenses]);
+
+  const monthlySalary = user?.monthlySalary || 0;
+  const balance = monthlySalary - totalExpensesThisMonth;
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
-        <h3 className="text-gray-600 text-sm font-semibold uppercase">Total Income</h3>
-        <p className="text-3xl font-bold text-blue-600 mt-2">$5,000</p>
-        <p className="text-xs text-gray-500 mt-2">This month</p>
+    <div className="summary-container">
+      <div className="summary-card summary-card-income">
+        <h3 className="summary-label">Monthly Income</h3>
+        <p className="summary-amount-income">₹{monthlySalary.toFixed(2)}</p>
+        <p className="summary-meta">Your monthly salary</p>
       </div>
-      
-      <div className="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
-        <h3 className="text-gray-600 text-sm font-semibold uppercase">Total Expenses</h3>
-        <p className="text-3xl font-bold text-red-600 mt-2">$2,300</p>
-        <p className="text-xs text-gray-500 mt-2">This month</p>
+
+      <div className="summary-card summary-card-expense">
+        <h3 className="summary-label">Total Expenses</h3>
+        <p className="summary-amount-expense">₹{totalExpensesThisMonth.toFixed(2)}</p>
+        <p className="summary-meta">This month</p>
       </div>
-      
-      <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-        <h3 className="text-gray-600 text-sm font-semibold uppercase">Balance</h3>
-        <p className="text-3xl font-bold text-green-600 mt-2">$2,700</p>
-        <p className="text-xs text-gray-500 mt-2">Remaining</p>
+
+      <div className="summary-card summary-card-balance">
+        <h3 className="summary-label">Balance</h3>
+        <p className={`summary-amount-balance ${balance < 0 ? 'text-red-600' : ''}`}>₹{balance.toFixed(2)}</p>
+        <p className="summary-meta">Remaining</p>
       </div>
     </div>
   );

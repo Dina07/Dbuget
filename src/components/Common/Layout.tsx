@@ -1,17 +1,19 @@
 import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import '../../styles/base.css';
 
 interface LayoutProps {
   children: React.ReactNode;
   title?: string;
+  onLogout?: () => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, title, onLogout }) => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header title={title} />
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <div className="layout">
+      <Header title={title} onLogout={onLogout} />
+      <main className="layout-main">
         {children}
       </main>
       <Footer />
