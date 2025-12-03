@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
 import { Layout } from './components/Common/Layout';
 import { Onboarding } from './components/Onboarding/Onboarding';
@@ -9,7 +9,7 @@ import { QuickStats } from './components/Dashboard/QuickStats';
 import './styles/base.css';
 
 function AppContent() {
-  const { user, setUser } = useAppContext();
+  const { user } = useAppContext();
   const [showOnboarding, setShowOnboarding] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -41,9 +41,7 @@ function AppContent() {
   }
 
   if (showOnboarding) {
-    return (
-      <Onboarding onComplete={() => setShowOnboarding(false)} />
-    );
+    return <Onboarding onComplete={() => setShowOnboarding(false)} />;
   }
 
   return (

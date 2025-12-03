@@ -6,6 +6,6 @@
   "tabWidth": 2,
   "useTabs": false,
   "arrowParens": "always",
-  "parser": "babel",
+  "parser": "typescript",
   "endOfLine": "lf"
 }

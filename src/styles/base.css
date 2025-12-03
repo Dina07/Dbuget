@@ -607,7 +607,7 @@ body {
   }
 
   .header-user-name {
-    @apply text-sm  sm:inline;
+    @apply text-sm inline;
   }
 
   .btn-logout {
