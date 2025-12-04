@@ -10,18 +10,18 @@ interface OnboardingProps {
 export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const { setUser } = useAppContext();
   const [name, setName] = useState('');
-  const [salary, setSalary] = useState('');
-  const [errors, setErrors] = useState<{ name?: string; salary?: string }>({});
+  const [income, setIncome] = useState('');
+  const [errors, setErrors] = useState<{ name?: string; income?: string }>({});
 
   const validateForm = () => {
-    const newErrors: { name?: string; salary?: string } = {};
+    const newErrors: { name?: string; income?: string } = {};
 
     if (!name.trim()) {
       newErrors.name = 'Name is required';
     }
 
-    if (!salary || parseFloat(salary) <= 0) {
-      newErrors.salary = 'Please enter a valid monthly salary';
+    if (!income || parseFloat(income) <= 0) {
+      newErrors.income = 'Please enter a valid monthly income';
     }
 
     setErrors(newErrors);
@@ -38,7 +38,7 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
     const newUser: User = {
       id: Date.now().toString(),
       name: name.trim(),
-      monthlySalary: parseFloat(salary),
+      monthlyIncome: parseFloat(income),
       createdAt: new Date(),
     };
 
@@ -50,16 +50,16 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
     <div className="onboarding-wrapper">
       <div className="onboarding-container">
         <div className="onboarding-header">
-          <h1 className="onboarding-title">Welcome to DBudget</h1>
+          <h1 className="onboarding-title">💰 Welcome to DBudget</h1>
           <p className="onboarding-subtitle">
-            Track your daily expenses and manage your budget efficiently
+            Smart expense tracking & budget management for your financial goals
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="onboarding-form">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
-              Your Name
+              👤 Your Name
             </label>
             <input
               type="text"
@@ -75,51 +75,56 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="salary" className="form-label">
-              Monthly Salary
+            <label htmlFor="income" className="form-label">
+              📈 Monthly Income
             </label>
+            <p className="form-hint">Include salary, freelance, investments, etc.</p>
             <div className="form-input-wrapper">
               <span className="form-currency">₹</span>
               <input
                 type="number"
-                id="salary"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
+                id="income"
+                value={income}
+                onChange={(e) => setIncome(e.target.value)}
                 placeholder="0.00"
                 step="0.01"
                 className={`form-input form-input-currency ${
-                  errors.salary ? 'form-input-error' : ''
+                  errors.income ? 'form-input-error' : ''
                 }`}
               />
             </div>
-            {errors.salary && (
-              <span className="form-error">{errors.salary}</span>
+            {errors.income && (
+              <span className="form-error">{errors.income}</span>
             )}
           </div>
 
           <button type="submit" className="btn btn-primary btn-lg">
-            Get Started
+            Start Managing Budget 🚀
           </button>
         </form>
 
         <div className="onboarding-features">
-          <h2 className="onboarding-features-title">What you can do:</h2>
+          <h2 className="onboarding-features-title">✨ Key Features:</h2>
           <ul className="onboarding-features-list">
             <li className="onboarding-feature-item">
               <span className="onboarding-feature-icon">📊</span>
-              <span>Track daily, monthly, and yearly expenses</span>
+              <span>Smart categorization of daily expenses</span>
             </li>
             <li className="onboarding-feature-item">
               <span className="onboarding-feature-icon">📈</span>
-              <span>View detailed charts and analytics</span>
+              <span>Interactive charts (Daily, Monthly, Category)</span>
             </li>
             <li className="onboarding-feature-item">
               <span className="onboarding-feature-icon">📥</span>
-              <span>Download reports as CSV, PDF, or Image</span>
+              <span>Export reports as CSV, PDF, or PNG</span>
             </li>
             <li className="onboarding-feature-item">
-              <span className="onboarding-feature-icon">💰</span>
-              <span>Categorize expenses by type</span>
+              <span className="onboarding-feature-icon">💡</span>
+              <span>Real-time budget tracking & insights</span>
+            </li>
+            <li className="onboarding-feature-item">
+              <span className="onboarding-feature-icon">🔒</span>
+              <span>Secure local storage (no cloud)</span>
             </li>
           </ul>
         </div>

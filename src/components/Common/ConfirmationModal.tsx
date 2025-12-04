@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/base.css';
 
 interface ConfirmationModalProps {
-  isOpen: boolean;
+  // isOpen: boolean;
   title: string;
   message: string;
   confirmText?: string;
@@ -13,7 +13,6 @@ interface ConfirmationModalProps {
 }
 
 export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
-  isOpen,
   title,
   message,
   confirmText = 'Confirm',
@@ -22,10 +21,6 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
