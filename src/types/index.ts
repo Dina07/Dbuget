@@ -2,7 +2,7 @@
 export interface User {
   id: string;
   name: string;
-  monthlySalary: number;
+  monthlyIncome: number;
   createdAt: Date;
 }
 

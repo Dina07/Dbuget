@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
 import { Layout } from './components/Common/Layout';
 import { Onboarding } from './components/Onboarding/Onboarding';
-import { ExpenseForm } from './components/Expenses/ExpenseForm';
 import { ExpenseList } from './components/Expenses/ExpenseList';
-import { Summary } from './components/Dashboard/Summary';
 import { QuickStats } from './components/Dashboard/QuickStats';
 import './styles/base.css';
 
@@ -48,9 +46,7 @@ function AppContent() {
     <Layout title="DBudget" onLogout={handleLogout}>
       <div className="dashboard">
         <div className="dashboard-content">
-          <Summary />
           <div className="dashboard-grid">
-            <ExpenseForm />
             <QuickStats />
           </div>
           <ExpenseList />

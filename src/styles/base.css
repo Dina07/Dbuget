@@ -5,49 +5,61 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 /* ============================================
    COMMON VALUES & CSS VARIABLES
    ============================================ */
 :root {
-  /* Colors */
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary-color: #10b981;
-  --secondary-hover: #059669;
-  --danger-color: #ef4444;
-  --danger-hover: #dc2626;
-  --warning-color: #f59e0b;
-  --success-color: #10b981;
+  /* Primary Colors */
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-primary-light: #818cf8;
 
-  /* Text Colors */
-  --text-dark: #1f2937;
-  --text-gray: #6b7280;
-  --text-light: #9ca3af;
-  --text-white: #ffffff;
+  /* Secondary Colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-light: #a78bfa;
 
-  /* Background Colors */
-  --bg-white: #ffffff;
-  --bg-light: #f9fafb;
-  --bg-dark: #111827;
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-light: #6ee7b7;
+  --color-danger: #ef4444;
+  --color-danger-light: #fca5a5;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fcd34d;
+
+  /* Neutral Colors */
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f1f5f9;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-light: #94a3b8;
+  --color-border: #e2e8f0;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
   /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
 
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
-  --radius-lg: 0.875rem;
-
-  /* Box Shadow */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
 /* ============================================
@@ -57,20 +69,23 @@
   @apply box-border;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply bg-gray-50 text-gray-900;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen;
+  color: var(--color-text-primary);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
 /* ============================================
-   HEADER COMPONENT STYLES
+   HEADER
    ============================================ */
 .header {
-  @apply bg-white shadow-sm border-b border-gray-200;
+  @apply bg-white border-b border-slate-200 shadow-md sticky top-0 z-50;
+  background: linear-gradient(90deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .header-container {
@@ -78,34 +93,34 @@ body {
 }
 
 .header-left {
-  @apply flex-1;
+  @apply flex flex-col;
 }
 
 .header-right {
-  @apply flex items-center gap-4 ml-auto;
+  @apply flex items-center gap-4;
 }
 
 .header-title {
-  @apply text-3xl font-bold text-gray-900;
+  @apply text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
 }
 
 .header-subtitle {
-  @apply text-gray-600 text-sm mt-1;
+  @apply text-sm text-slate-500 font-medium;
 }
 
 .header-user-name {
-  @apply text-gray-700 font-medium;
+  @apply text-sm font-semibold text-slate-700 inline;
 }
 
 .btn-logout {
-  @apply bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition;
+  @apply px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105;
 }
 
 /* ============================================
-   FOOTER COMPONENT STYLES
+   FOOTER
    ============================================ */
 .footer {
-  @apply bg-gray-900 text-gray-300 py-8 mt-12;
+  @apply bg-gradient-to-r from-slate-800 to-slate-900 text-white py-8 border-t border-slate-700;
 }
 
 .footer-container {
@@ -113,203 +128,34 @@ body {
 }
 
 .footer-content {
-  @apply text-center;
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 mb-8;
 }
 
 .footer-text {
-  @apply text-sm text-gray-400 mt-2;
+  @apply text-slate-300 text-sm text-center md:text-left;
 }
 
 /* ============================================
-   LAYOUT COMPONENT STYLES
+   LAYOUT
    ============================================ */
 .layout {
   @apply flex flex-col min-h-screen;
 }
 
 .layout-main {
-  @apply flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full;
+  @apply flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8;
 }
 
 /* ============================================
-   SUMMARY CARD COMPONENT STYLES
-   ============================================ */
-.summary-container {
-  @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
-}
-
-.summary-card {
-  @apply bg-white rounded-lg shadow p-6;
-}
-
-.summary-card-income {
-  @apply border-l-4 border-blue-500;
-}
-
-.summary-card-expense {
-  @apply border-l-4 border-red-500;
-}
-
-.summary-card-balance {
-  @apply border-l-4 border-green-500;
-}
-
-.summary-label {
-  @apply text-gray-600 text-sm font-semibold uppercase;
-}
-
-.summary-amount-income {
-  @apply text-3xl font-bold text-blue-600 mt-2;
-}
-
-.summary-amount-expense {
-  @apply text-3xl font-bold text-red-600 mt-2;
-}
-
-.summary-amount-balance {
-  @apply text-3xl font-bold text-green-600 mt-2;
-}
-
-.summary-meta {
-  @apply text-xs text-gray-500 mt-2;
-}
-
-/* ============================================
-   DASHBOARD COMPONENT STYLES
-   ============================================ */
-.dashboard {
-  margin: 0;
-}
-
-.dashboard-title {
-  @apply text-2xl font-bold text-gray-900 mb-6;
-}
-
-.dashboard-grid {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
-}
-
-.dashboard-card {
-  @apply bg-white rounded-lg shadow p-6;
-}
-
-.dashboard-card-title {
-  @apply text-xl font-semibold text-gray-900 mb-4;
-}
-
-.transaction-list {
-  @apply space-y-4;
-}
-
-.transaction-item {
-  @apply flex justify-between items-center pb-4 border-b border-gray-200;
-}
-
-.transaction-item:last-child {
-  @apply border-b-0;
-}
-
-.transaction-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.transaction-name {
-  @apply font-medium text-gray-900;
-}
-
-.transaction-category {
-  @apply text-sm text-gray-500;
-}
-
-.transaction-amount {
-  @apply font-semibold;
-}
-
-.transaction-amount-income {
-  @apply text-green-600;
-}
-
-.transaction-amount-expense {
-  @apply text-red-600;
-}
-
-.action-buttons {
-  @apply space-y-3;
-}
-
-.btn {
-  @apply w-full font-semibold py-3 rounded-lg transition text-white;
-}
-
-.btn-primary {
-  @apply bg-blue-500 hover:bg-blue-600;
-}
-
-.btn-danger {
-  @apply bg-red-500 hover:bg-red-600;
-}
-
-.btn-secondary {
-  @apply bg-gray-600 hover:bg-gray-700;
-}
-
-/* ============================================
-   FORM STYLES
-   ============================================ */
-.form-group {
-  @apply mb-4;
-}
-
-.form-label {
-  @apply block text-sm font-semibold text-gray-700 mb-2;
-}
-
-.form-input {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
-}
-
-.form-input-error {
-  @apply border-red-500 focus:ring-red-500;
-}
-
-.form-error {
-  @apply text-red-600 text-xs mt-1 block;
-}
-
-.form-input-wrapper {
-  @apply relative;
-}
-
-.form-currency {
-  @apply absolute left-4 top-2 text-gray-600 font-semibold;
-}
-
-.form-input-currency {
-  @apply pl-8;
-}
-
-.form-row {
-  @apply flex gap-4;
-}
-
-.form-group-half {
-  @apply flex-1;
-}
-
-.form-group-half:last-child {
-  @apply mr-0;
-}
-
-/* ============================================
-   ONBOARDING STYLES
+   ONBOARDING
    ============================================ */
 .onboarding-wrapper {
-  @apply min-h-screen bg-gradient-to-br from-blue-500 via-blue-400 to-blue-600 flex items-center justify-center p-4;
+  @apply min-h-screen flex items-center justify-center px-4 py-8;
+  background: var(--gradient-primary);
 }
 
 .onboarding-container {
-  @apply bg-white rounded-2xl shadow-2xl max-w-md w-full p-8;
+  @apply bg-white rounded-2xl shadow-2xl p-8 sm:p-12 max-w-2xl w-full;
 }
 
 .onboarding-header {
@@ -317,391 +163,250 @@ body {
 }
 
 .onboarding-title {
-  @apply text-4xl font-bold text-gray-900 mb-2;
+  @apply text-4xl sm:text-5xl font-bold text-slate-900 mb-2;
 }
 
 .onboarding-subtitle {
-  @apply text-gray-600 text-base;
+  @apply text-lg text-slate-600 font-medium;
 }
 
 .onboarding-form {
   @apply space-y-6 mb-8;
 }
 
-.btn-lg {
-  @apply py-3 text-lg;
+.form-group {
+  @apply flex flex-col gap-2;
 }
 
-.btn-block {
-  @apply w-full;
+.form-label {
+  @apply text-sm font-semibold text-slate-700;
+}
+
+.form-hint {
+  @apply text-xs text-slate-500 italic;
+}
+
+.form-input-wrapper {
+  @apply relative flex items-center;
+}
+
+.form-currency {
+  @apply absolute left-3 text-lg font-bold text-slate-400;
+}
+
+.form-input {
+  @apply w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all duration-300 font-medium;
+  background-color: var(--color-bg-secondary);
+}
+
+.form-input-currency {
+  @apply pl-10;
+}
+
+.form-input-error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-200;
+}
+
+.form-error {
+  @apply text-xs text-red-500 font-medium;
 }
 
 .onboarding-features {
-  @apply bg-gray-50 rounded-lg p-6 border border-gray-200;
+  @apply bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200;
 }
 
 .onboarding-features-title {
-  @apply text-lg font-semibold text-gray-900 mb-4;
+  @apply text-lg font-bold text-slate-900 mb-4;
 }
 
 .onboarding-features-list {
-  @apply space-y-3 list-none p-0;
+  @apply space-y-3;
 }
 
 .onboarding-feature-item {
-  @apply flex items-start gap-3 text-sm text-gray-700;
+  @apply flex items-start gap-3 text-slate-700;
 }
 
 .onboarding-feature-icon {
-  @apply text-xl flex-shrink-0;
+  @apply text-2xl flex-shrink-0;
 }
 
 /* ============================================
-   EXPENSE FORM STYLES
+   BUTTONS
    ============================================ */
-.expense-form-card {
-  @apply bg-white rounded-lg shadow p-6 mb-8;
+.btn {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg;
 }
 
-.expense-form-title {
-  @apply text-2xl font-bold text-gray-900 mb-6;
+.btn-primary {
+  @apply bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700;
 }
 
-.expense-form {
-  @apply space-y-4;
+.btn-secondary {
+  @apply bg-slate-200 text-slate-900 hover:bg-slate-300;
 }
 
-/* ============================================
-   EXPENSE LIST STYLES
-   ============================================ */
-.empty-state {
-  @apply bg-gray-50 rounded-lg p-12 text-center;
+.btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600;
 }
 
-.empty-state-text {
-  @apply text-gray-500 text-lg;
-}
-
-.expense-list-container {
-  @apply bg-white rounded-lg shadow p-6;
-}
-
-.expense-list-header {
-  @apply flex items-center justify-between mb-6 pb-4 border-b border-gray-200;
-}
-
-.expense-list-title {
-  @apply text-2xl font-bold text-gray-900;
-}
-
-.expense-list-controls {
-  @apply flex items-center gap-2;
-}
-
-.expense-table {
-  @apply mb-6 overflow-x-auto;
-}
-
-.expense-table-header {
-  @apply grid grid-cols-5 gap-4 p-4 bg-gray-100 rounded-t-lg font-semibold text-gray-900 text-sm;
-}
-
-.expense-table-row {
-  @apply grid grid-cols-5 gap-4 p-4 border-b border-gray-200 items-center hover:bg-gray-50 transition;
-}
-
-.expense-col-date {
-  @apply text-sm text-gray-700;
-}
-
-.expense-col-category {
-  @apply text-sm font-medium text-gray-900;
-}
-
-.expense-col-description {
-  @apply text-sm text-gray-600 truncate;
-}
-
-.expense-col-amount {
-  @apply font-semibold text-gray-900;
-}
-
-.expense-col-action {
-  @apply text-right;
-}
-
-.expense-badge {
-  @apply inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full;
-}
-
-.expense-amount {
-  @apply text-green-600 font-bold;
-}
-
-.btn-delete {
-  @apply bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded transition text-sm;
-}
-
-.expense-list-footer {
-  @apply pt-4 border-t border-gray-200;
-}
-
-.expense-total {
-  @apply text-right text-gray-700 font-semibold;
-}
-
-/* ============================================
-   QUICK STATS & EXPORT STYLES
-   ============================================ */
-.stats-header {
-  @apply flex justify-between items-center mb-6;
-}
-
-.export-buttons {
-  @apply flex gap-2;
-}
-
-.btn-export {
-  @apply px-3 py-1 rounded text-xs font-semibold transition;
-}
-
-.btn-export-csv {
-  @apply bg-green-500 hover:bg-green-600 text-white;
-}
-
-.btn-export-pdf {
-  @apply bg-red-500 hover:bg-red-600 text-white;
-}
-
-.btn-export-image {
-  @apply bg-blue-500 hover:bg-blue-600 text-white;
-}
-
-.stats-chart-container {
-  @apply mb-6;
-}
-
-.stats-summary {
-  @apply grid grid-cols-3 gap-4 pt-6 border-t border-gray-200;
-}
-
-.stat-item {
-  @apply text-center;
-}
-
-.stat-label {
-  @apply text-xs font-semibold text-gray-600 uppercase;
-}
-
-.stat-value {
-  @apply text-2xl font-bold text-gray-900 mt-2;
-}
-
-/* ============================================
-   CHARTS & VISUALIZATIONS
-   ============================================ */
-.charts-container {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8;
-}
-
-.chart-card {
-  @apply bg-white rounded-lg shadow p-6;
-}
-
-.chart-header {
-  @apply flex justify-between items-center mb-4;
-}
-
-.chart-title {
-  @apply text-lg font-semibold text-gray-900;
+.btn-lg {
+  @apply px-8 py-4 text-lg;
 }
 
 .btn-sm {
-  @apply px-2 py-1 text-xs;
+  @apply px-3 py-2 text-sm;
 }
 
 /* ============================================
-   CONFIRMATION MODAL STYLES
+   SUMMARY CARDS
    ============================================ */
-.modal-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+.summary-container {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8;
 }
 
-.modal-content {
-  @apply bg-white rounded-lg shadow-lg max-w-md w-full mx-4 overflow-hidden;
-  animation: slideUp 0.3s ease-out;
+.summary-card {
+  @apply bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.summary-card-income {
+  @apply bg-gradient-to-br from-green-50 to-emerald-50 border-green-200;
 }
 
-.modal-header {
-  @apply bg-gray-100 px-6 py-4 flex justify-between items-center border-b border-gray-200;
+.summary-card-expense {
+  @apply bg-gradient-to-br from-red-50 to-rose-50 border-red-200;
 }
 
-.modal-title {
-  @apply text-lg font-semibold text-gray-900;
+.summary-card-balance {
+  @apply bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200;
 }
 
-.modal-close {
-  @apply text-gray-500 hover:text-gray-700 text-2xl cursor-pointer transition;
+.summary-card-balance.negative {
+  @apply from-red-50 to-orange-50 border-red-300;
 }
 
-.modal-body {
-  @apply px-6 py-4;
+.summary-label {
+  @apply text-sm font-semibold text-slate-600 mb-2 uppercase tracking-wide;
 }
 
-.modal-message {
-  @apply text-gray-700 text-sm leading-relaxed;
+.summary-amount {
+  @apply text-3xl font-bold mb-2;
 }
 
-.modal-footer {
-  @apply bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200;
+.summary-amount-income {
+  @apply text-green-600;
 }
 
-.btn-modal-cancel {
-  @apply px-4 py-2 rounded font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 transition;
+.summary-amount-expense {
+  @apply text-red-600;
 }
 
-.btn-modal-confirm {
-  @apply px-4 py-2 rounded font-medium text-white bg-blue-500 hover:bg-blue-600 transition;
-}
-
-.btn-modal-danger {
-  @apply bg-red-500 hover:bg-red-600;
+.summary-percentage {
+  @apply text-xs text-slate-500 font-medium;
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - MOBILE FIRST
+   EXPENSE FORM
    ============================================ */
+.expense-form-container {
+  @apply bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-slate-200 mb-8;
+}
 
-/* Mobile: Small screens (default styles above) */
-@media (max-width: 768px) {
-  .header-container {
-    @apply flex-col items-start py-2 px-3;
-  }
+.expense-form-title {
+  @apply text-2xl font-bold text-slate-900 mb-6;
+}
 
-  .header-left {
-    @apply flex-1 w-full mb-3;
-  }
+.form-row {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
 
-  .header-title {
-    @apply text-2xl;
-  }
+.form-row-full {
+  @apply grid grid-cols-1 gap-4;
+}
 
-  .header-subtitle {
-    @apply text-xs;
-  }
+select {
+  @apply w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all duration-300 bg-white;
+}
 
-  .header-right {
-    @apply w-full justify-between gap-2 ml-0;
-  }
+/* ============================================
+   EXPENSE LIST
+   ============================================ */
+.expense-list-container {
+  @apply bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden;
+}
 
-  .header-user-name {
-    @apply text-sm inline;
-  }
+.expense-list-header {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 font-semibold flex justify-between items-center;
+}
 
-  .btn-logout {
-    @apply py-1 px-2 text-sm;
-  }
+.expense-list-controls {
+  @apply flex gap-2 flex-wrap;
+}
 
-  .layout-main {
-    @apply px-3 py-4;
-  }
+.sort-button {
+  @apply px-4 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-all duration-300 text-sm border-2 border-indigo-600;
+}
 
-  .dashboard-grid {
-    @apply grid-cols-1;
-  }
+.sort-button.active {
+  @apply bg-indigo-600 text-white border-indigo-600 shadow-md;
+}
 
-  .summary-container {
-    @apply grid-cols-1;
-  }
+/* Fixed expense table layout */
+.expense-table-header {
+  @apply hidden md:grid bg-slate-100 p-3 font-semibold text-slate-700 text-sm sticky top-16 z-10;
+  grid-template-columns: 1.2fr 1.2fr 1.5fr 1fr 0.6fr;
+  gap: 0.5rem;
+  align-items: center;
+}
 
-  .summary-card {
-    @apply p-4;
-  }
+.expense-table-header > div {
+  @apply truncate;
+}
 
-  .summary-label {
-    @apply text-xs;
-  }
+.expense-table {
+  @apply grid p-3 border-b border-slate-200 hover:bg-slate-50 transition-colors duration-200;
+  grid-template-columns: 1fr;
+  grid-template-areas: "date" "category" "description" "amount" "action";
+  gap: 0.75rem;
+}
 
-  .summary-amount-income,
-  .summary-amount-expense,
-  .summary-amount-balance {
-    @apply text-2xl;
-  }
+.expense-total {
+  @apply grid p-3 bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
 
-  .dashboard-card {
-    @apply p-4;
-  }
+.expense-total-label {
+  @apply col-span-1;
+}
 
-  .dashboard-card-title {
-    @apply text-lg;
-  }
+.expense-total-amount {
+  @apply text-green-600 text-right;
+}
 
-  .chart-header {
-    @apply flex-col items-start gap-2;
-  }
-
-  .export-buttons {
-    @apply w-full flex-wrap;
-  }
-
-  .btn-export {
-    @apply text-xs px-2 py-1;
-  }
-
-  .stats-summary {
-    @apply grid-cols-1 gap-2;
-  }
-
-  .stat-item {
-    @apply text-left;
-  }
-
-  .stat-label {
-    @apply text-xs;
-  }
-
-  .stat-value {
-    @apply text-xl;
-  }
-
-  .expense-list-container {
-    @apply p-3;
-  }
-
-  .expense-list-header {
-    @apply flex-col items-start gap-2;
-  }
-
-  .expense-list-title {
-    @apply text-lg;
-  }
-
-  .expense-list-controls {
-    @apply w-full flex-col;
+@media (min-width: 768px) {
+  .expense-table-header {
+    @apply grid bg-slate-100;
+    grid-template-columns: 1.2fr 1.2fr 1.5fr 1fr 0.6fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    align-items: center;
   }
 
   .expense-table {
-    @apply mb-4 text-sm;
+    @apply grid p-3;
+    grid-template-columns: 1.2fr 1.2fr 1.5fr 1fr 0.6fr;
+    grid-template-areas: unset;
+    gap: 0.5rem;
+    align-items: center;
   }
 
-  .expense-table-header {
-    @apply text-xs;
-  }
-
-  .expense-table-row {
-    @apply text-xs gap-2 p-2;
+  .expense-total {
+    @apply grid;
+    grid-template-columns: 1.2fr 1.2fr 1.5fr 1fr 0.6fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    align-items: center;
   }
 
   .expense-col-date,
@@ -709,161 +414,575 @@ body {
   .expense-col-description,
   .expense-col-amount,
   .expense-col-action {
-    @apply text-xs;
+    grid-area: unset;
   }
 
-  .expense-badge {
-    @apply text-xs px-2 py-1;
+  .expense-col-date::before,
+  .expense-col-category::before,
+  .expense-col-description::before,
+  .expense-col-amount::before,
+  .expense-col-action::before {
+    display: none;
   }
+}
 
-  .btn-delete {
-    @apply py-1 px-2 text-xs;
+.expense-col-date {
+  @apply text-sm font-medium text-slate-900 truncate;
+  grid-area: date;
+}
+
+.expense-col-date::before {
+  content: "📅 Date: ";
+  @apply font-bold text-slate-700 md:hidden;
+}
+
+.expense-col-category {
+  @apply text-sm font-medium text-slate-900 truncate;
+  grid-area: category;
+}
+
+.expense-col-category::before {
+  content: "🏷️ Category: ";
+  @apply font-bold text-slate-700 md:hidden;
+}
+
+.expense-col-description {
+  @apply text-sm text-slate-600 truncate;
+  grid-area: description;
+}
+
+.expense-col-description::before {
+  content: "📝 Description: ";
+  @apply font-bold text-slate-700 md:hidden;
+}
+
+.expense-col-amount {
+  @apply text-sm font-bold text-green-600;
+  grid-area: amount;
+}
+
+.expense-col-amount::before {
+  content: "💵 Amount: ";
+  @apply font-bold text-slate-700 md:hidden;
+}
+
+.expense-col-action {
+  @apply text-center flex justify-center;
+  grid-area: action;
+}
+
+.expense-badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 whitespace-nowrap;
+}
+
+.btn-delete {
+  @apply text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all duration-300 cursor-pointer font-bold text-lg;
+}
+
+.expense-empty-state {
+  @apply text-center py-12 text-slate-500 text-lg;
+}
+
+.expense-total {
+  @apply grid gap-2 p-4 bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300;
+  grid-template-columns: 1.2fr 1.2fr 1.5fr 1fr 0.6fr;
+}
+
+.expense-total-label {
+  @apply col-span-3 text-right pr-4;
+}
+
+.expense-total-amount {
+  @apply text-right text-green-600;
+}
+
+/* ============================================
+   CHARTS & ANALYTICS
+   ============================================ */
+.chart-section {
+  @apply bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-slate-200;
+}
+
+.chart-header {
+  @apply flex justify-between items-center mb-6 pb-4 border-b border-slate-200;
+}
+
+.chart-title {
+  @apply text-xl font-bold text-slate-900;
+}
+
+.chart-container {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8;
+}
+
+.chart-container-full {
+  @apply mb-8;
+}
+
+.recharts-wrapper {
+  @apply flex justify-center;
+}
+
+/* ============================================
+   QUICK STATS
+   ============================================ */
+.stats-header {
+  @apply flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-200;
+}
+
+.stats-title {
+  @apply text-xl font-bold text-slate-900;
+}
+
+/* ============================================
+   QUICK STATS - MODERN STYLE
+   ============================================ */
+.quick-stats-container {
+  @apply bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden mb-8;
+}
+
+.quick-stats-header {
+  @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-8 py-6 flex justify-between items-start sm:items-center gap-6 flex-col sm:flex-row;
+}
+
+.quick-stats-title {
+  @apply text-3xl font-bold;
+}
+
+.quick-stats-subtitle {
+  @apply text-indigo-100 text-sm font-medium mt-1;
+}
+
+.export-buttons-group {
+  @apply flex gap-3 flex-wrap justify-end items-center;
+}
+
+.dropdown-container {
+  @apply relative;
+}
+
+.dropdown-btn {
+  @apply px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm border-2 border-slate-300 whitespace-nowrap;
+}
+
+.dropdown-menu {
+  @apply absolute right-0 mt-2 w-48 bg-white border border-slate-300 rounded-lg shadow-lg z-50;
+}
+
+.dropdown-item {
+  @apply w-full text-left px-4 py-3 hover:bg-slate-100 transition-colors duration-200 text-slate-700 font-medium first:rounded-t-lg last:rounded-b-lg border-b border-slate-100 last:border-b-0;
+}
+
+.dropdown-item.active {
+  @apply bg-blue-100 text-blue-700 font-bold;
+}
+
+.btn-export-csv {
+  @apply px-5 py-2.5 bg-white hover:bg-slate-100 text-green-600 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm border-2 border-green-500;
+}
+
+.btn-export-pdf {
+  @apply px-5 py-2.5 bg-white hover:bg-slate-100 text-red-600 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm border-2 border-red-500;
+}
+
+.btn-export-image {
+  @apply px-5 py-2.5 bg-white hover:bg-slate-100 text-blue-600 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm border-2 border-blue-500;
+}
+
+.quick-stats-summary {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 p-8;
+}
+
+.quick-stat-card {
+  @apply rounded-xl p-6 shadow-md border border-slate-200 flex items-start gap-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.quick-stat-income {
+  @apply bg-gradient-to-br from-green-50 to-emerald-50 border-green-300;
+}
+
+.quick-stat-expense {
+  @apply bg-gradient-to-br from-red-50 to-rose-50 border-red-300;
+}
+
+.quick-stat-balance {
+  @apply bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300;
+}
+
+.quick-stat-balance-negative {
+  @apply bg-gradient-to-br from-orange-50 to-red-50 border-orange-300;
+}
+
+.quick-stat-icon {
+  @apply text-4xl flex-shrink-0;
+}
+
+.quick-stat-content {
+  @apply flex-1;
+}
+
+.quick-stat-label {
+  @apply text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2;
+}
+
+.quick-stat-amount {
+  @apply text-2xl font-bold text-slate-900 mb-1;
+}
+
+.quick-stat-income .quick-stat-amount {
+  @apply text-green-700;
+}
+
+.quick-stat-expense .quick-stat-amount {
+  @apply text-red-700;
+}
+
+.quick-stat-balance .quick-stat-amount {
+  @apply text-blue-700;
+}
+
+.quick-stat-balance-negative .quick-stat-amount {
+  @apply text-orange-700;
+}
+
+.quick-stat-percentage {
+  @apply text-xs text-slate-500 font-medium;
+}
+
+.quick-stats-chart {
+  @apply bg-gradient-to-b from-slate-50 to-white px-8 py-8 border-t border-slate-200;
+}
+
+.chart-wrapper {
+  @apply w-full h-full;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fadeIn;
+}
+
+.modal-content {
+  @apply bg-white rounded-xl shadow-2xl max-w-md w-full animate-slideUp;
+}
+
+.modal-form-content {
+  @apply bg-white rounded-xl shadow-2xl max-w-md w-full animate-slideUp;
+}
+
+.modal-form {
+  @apply space-y-4 px-6 py-6;
+}
+
+.modal-form-group {
+  @apply flex flex-col gap-2;
+}
+
+.modal-form-actions {
+  @apply flex gap-3 pt-4 border-t border-slate-200;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.modal-header {
+  @apply bg-slate-100 px-6 py-4 border-b border-slate-200 flex justify-between items-center;
+}
+
+.modal-title {
+  @apply text-lg font-bold text-slate-900;
+}
+
+.modal-close-btn {
+  @apply text-slate-500 hover:text-slate-700 text-2xl font-bold cursor-pointer transition-colors duration-300;
+}
+
+.modal-body {
+  @apply px-6 py-4;
+}
+
+.modal-message {
+  @apply text-slate-700 text-sm mb-4;
+}
+
+.modal-footer {
+  @apply px-6 py-4 border-t border-slate-200 flex gap-4 justify-end;
+}
+
+.modal-btn-cancel {
+  @apply px-4 py-2 bg-slate-200 text-slate-900 rounded-lg font-medium hover:bg-slate-300 transition-all duration-300;
+}
+
+.modal-btn-confirm {
+  @apply px-4 py-2 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-all duration-300;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-
-  .form-group {
-    @apply mb-3;
+  to {
+    opacity: 1;
   }
+}
 
-  .form-label {
-    @apply text-sm;
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
   }
-
-  .form-input {
-    @apply py-2 px-3 text-sm;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
+}
 
-  .btn {
-    @apply py-2 text-base;
-  }
+.animate-fadeIn {
+  animation: fadeIn 300ms ease-in-out;
+}
 
-  .modal-content {
-    @apply mx-2 max-w-sm;
-  }
+.animate-slideUp {
+  animation: slideUp 300ms ease-out;
+}
 
-  .modal-header {
+/* ============================================
+   RESPONSIVE DESIGN - TABLET (≤1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .header-container {
     @apply px-4 py-3;
   }
 
-  .modal-title {
-    @apply text-base;
+  .layout-main {
+    @apply px-4 py-6;
   }
 
-  .modal-body {
-    @apply px-4 py-3;
+  .summary-container {
+    @apply grid-cols-1 md:grid-cols-2 gap-4;
   }
 
-  .modal-message {
-    @apply text-xs;
-  }
-
-  .modal-footer {
-    @apply px-4 py-3 gap-2;
-  }
-
-  .btn-modal-cancel,
-  .btn-modal-confirm {
-    @apply px-3 py-2 text-sm;
-  }
-
-  .charts-container {
-    @apply grid-cols-1;
-  }
-
-  .chart-card {
-    @apply p-3;
-  }
-
-  .expense-form-card {
-    @apply p-3;
-  }
-
-  .expense-form-title {
-    @apply text-lg;
-  }
-
-  .footer {
-    @apply py-4 mt-6;
-  }
-
-  .footer-text {
-    @apply text-xs;
+  .chart-container {
+    @apply grid-cols-1 gap-4;
   }
 
   .onboarding-container {
-    @apply max-w-xs p-6;
+    @apply p-8;
+  }
+
+  .expense-form-container {
+    @apply p-6;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE (≤768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .header-title {
+    @apply text-xl;
+  }
+
+  .header-subtitle {
+    @apply text-xs;
+  }
+
+  .onboarding-title {
+    @apply text-3xl;
+  }
+
+  .onboarding-container {
+    @apply p-6 rounded-xl;
+  }
+
+  .summary-container {
+    @apply grid-cols-1 gap-4;
+  }
+
+  .summary-card {
+    @apply p-4 rounded-lg;
+  }
+
+  .summary-amount {
+    @apply text-2xl;
+  }
+
+  .expense-table-header,
+  .expense-table,
+  .expense-total {
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .expense-list-header {
+    @apply px-3 py-3;
+  }
+
+  .sort-button {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .quick-stats-header {
+    @apply px-4 py-4 flex-col gap-4;
+  }
+
+  .quick-stats-title {
+    @apply text-2xl;
+  }
+
+  .quick-stats-subtitle {
+    @apply text-xs;
+  }
+
+  .export-buttons-group {
+    @apply w-full justify-start;
+  }
+
+  .btn-export-csv,
+  .btn-export-pdf,
+  .btn-export-image {
+    @apply flex-1 px-3 py-2 text-xs;
+  }
+
+  .quick-stats-summary {
+    @apply grid-cols-1 gap-4 p-4;
+  }
+
+  .quick-stat-card {
+    @apply p-4 gap-3;
+  }
+
+  .quick-stat-icon {
+    @apply text-3xl;
+  }
+
+  .quick-stat-amount {
+    @apply text-xl;
+  }
+
+  .quick-stats-chart {
+    @apply px-4 py-6;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - SMALL MOBILE (≤480px)
+   ============================================ */
+@media (max-width: 480px) {
+  :root {
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+  }
+
+  .header-container {
+    @apply px-3 py-2 gap-2;
+  }
+
+  .header-title {
+    @apply text-lg;
+  }
+
+  .header-right {
+    @apply gap-2;
+  }
+
+  .btn-logout {
+    @apply px-3 py-2 text-sm;
   }
 
   .onboarding-title {
     @apply text-2xl;
   }
 
-  .onboarding-subtitle {
-    @apply text-sm;
+  .onboarding-container {
+    @apply p-4;
   }
 
   .onboarding-features {
     @apply p-4;
   }
 
-  .onboarding-feature-item {
-    @apply gap-2 text-xs;
-  }
-}
-
-/* Tablet: Medium screens */
-@media (max-width: 1024px) {
-  .header-container {
-    @apply px-4 py-3;
+  .summary-card {
+    @apply p-3;
   }
 
-  .header-title {
-    @apply text-2xl;
+  .summary-label {
+    @apply text-xs;
   }
 
-  .dashboard-grid {
-    @apply grid-cols-1;
+  .summary-amount {
+    @apply text-xl;
   }
 
-  .summary-container {
-    @apply grid-cols-1 sm:grid-cols-2;
-  }
-
-  .charts-container {
-    @apply grid-cols-1;
-  }
-
-  .expense-table {
-    @apply text-sm;
+  .expense-table-header,
+  .expense-table,
+  .expense-total {
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.7rem;
   }
 
   .expense-col-description {
-    @apply hidden md:block;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1025px) {
-  .header-container {
-    @apply flex-row;
+    @apply hidden;
   }
 
-  .header-right {
-    @apply ml-auto;
+  .expense-list-header {
+    @apply px-2 py-2 flex-col gap-2;
   }
 
-  .dashboard-grid {
-    @apply grid-cols-2;
+  .expense-list-controls {
+    @apply w-full;
   }
 
-  .summary-container {
-    @apply grid-cols-3;
+  .sort-button {
+    @apply flex-1 px-2 py-1.5 text-xs;
   }
 
-  .charts-container {
-    @apply grid-cols-2;
+  .quick-stats-header {
+    @apply px-3 py-3;
   }
 
-  .expense-table {
-    @apply text-base;
+  .quick-stats-title {
+    @apply text-xl;
+  }
+
+  .export-buttons-group {
+    @apply gap-2;
+  }
+
+  .btn-export-csv,
+  .btn-export-pdf,
+  .btn-export-image {
+    @apply px-2 py-1.5 text-xs flex-1;
+  }
+
+  .quick-stats-summary {
+    @apply gap-3 p-3;
+  }
+
+  .quick-stat-card {
+    @apply p-3 gap-2;
+  }
+
+  .quick-stat-icon {
+    @apply text-2xl;
+  }
+
+  .quick-stat-label {
+    @apply text-xs;
+  }
+
+  .quick-stat-amount {
+    @apply text-lg;
+  }
+
+  .quick-stats-chart {
+    @apply px-2 py-4;
   }
 }
